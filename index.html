@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Long We've Been Together</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0b1220;
+      color: #f8fafc;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .card {
+      max-width: 720px;
+      width: 100%;
+      padding: 2.25rem;
+      border-radius: 1.5rem;
+      background: rgba(15, 23, 42, 0.9);
+      box-shadow: 0 24px 80px rgba(8, 15, 30, 0.35);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.25rem, 4vw, 3.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    p {
+      margin: 0 0 1.5rem;
+      color: #cbd5e1;
+      line-height: 1.75;
+      font-size: 1.05rem;
+    }
+
+    .timer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .segment {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      border-radius: 1rem;
+      padding: 1.2rem;
+    }
+
+    .value {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.04em;
+    }
+
+    .label {
+      margin: 0.5rem 0 0;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+    }
+
+    .footer {
+      margin-top: 1.75rem;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>How long we've been together</h1>
+    <p>Started: October 17, 2025 at 6:00 PM Eastern Time. This page updates continuously, counting every second since that moment.</p>
+
+    <div class="timer" id="timer">
+      <div class="segment">
+        <p class="value" id="years">0</p>
+        <p class="label">Years</p>
+      </div>
+      <div class="segment">
+        <p class="value" id="months">0</p>
+        <p class="label">Months</p>
+      </div>
+      <div class="segment">
+        <p class="value" id="days">0</p>
+        <p class="label">Days</p>
+      </div>
+      <div class="segment">
+        <p class="value" id="hours">0</p>
+        <p class="label">Hours</p>
+      </div>
+      <div class="segment">
+        <p class="value" id="minutes">0</p>
+        <p class="label">Minutes</p>
+      </div>
+      <div class="segment">
+        <p class="value" id="seconds">0</p>
+        <p class="label">Seconds</p>
+      </div>
+    </div>
+
+    <p class="footer">Open this page anytime and it will keep running forever.</p>
+  </main>
+
+  <script>
+    const startTime = new Date(Date.UTC(2025, 9, 17, 22, 0, 0));
+
+    function formatNumber(value) {
+      return String(value).padStart(2, '0');
+    }
+
+    function updateTimer() {
+      const now = new Date();
+      let delta = Math.max(0, now - startTime);
+
+      const msInSecond = 1000;
+      const msInMinute = msInSecond * 60;
+      const msInHour = msInMinute * 60;
+      const msInDay = msInHour * 24;
+      const msInMonth = msInDay * 30.436875; // average month
+      const msInYear = msInDay * 365.2425; // average year
+
+      const years = Math.floor(delta / msInYear);
+      delta -= years * msInYear;
+
+      const months = Math.floor(delta / msInMonth);
+      delta -= months * msInMonth;
+
+      const days = Math.floor(delta / msInDay);
+      delta -= days * msInDay;
+
+      const hours = Math.floor(delta / msInHour);
+      delta -= hours * msInHour;
+
+      const minutes = Math.floor(delta / msInMinute);
+      delta -= minutes * msInMinute;
+
+      const seconds = Math.floor(delta / msInSecond);
+
+      document.getElementById('years').textContent = years;
+      document.getElementById('months').textContent = months;
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = formatNumber(hours);
+      document.getElementById('minutes').textContent = formatNumber(minutes);
+      document.getElementById('seconds').textContent = formatNumber(seconds);
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
