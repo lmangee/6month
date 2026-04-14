@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luke & Hayes
-  How Long We've Been Together</title>
+  <title>Luke & Hayes</title>
   <style>
     :root {
       color-scheme: dark;
@@ -83,7 +82,7 @@
 </head>
 <body>
   <main class="card">
-    <h1>How long we've been together</h1>
+    <h1>Luke & Hayes</h1>
     <p>Started: October 17, 2025. This page updates continuously, counting every second since that day.</p>
 
     <div class="timer" id="timer">
@@ -127,15 +126,13 @@
     function updateTimer() {
       const now = new Date();
       
-      // Calculate total breakdown
       let years = now.getFullYear() - startDate.getFullYear();
       let months = now.getMonth() - startDate.getMonth();
       let days = now.getDate() - startDate.getDate();
       
-      // Adjust if days are negative (we haven't reached the 17th yet this month)
+      // Adjust if days are negative (haven't hit the 17th of this month yet)
       if (days < 0) {
         months--;
-        // Get last day of previous month to wrap the days correctly
         const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
         days += lastMonth.getDate();
       }
@@ -146,8 +143,7 @@
         months += 12;
       }
 
-      // Calculate time components (Hours, Mins, Secs)
-      const diffMs = now - startDate;
+      // Time components
       const hours = now.getHours();
       const minutes = now.getMinutes();
       const seconds = now.getSeconds();
