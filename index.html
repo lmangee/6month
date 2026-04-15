@@ -6,106 +6,136 @@
   <title>Luke & Hayes</title>
   <style>
     :root {
-      /* Lavender Theme Palette */
       --bg-color: #f3efff;
-      --card-bg: rgba(255, 255, 255, 0.7);
+      --card-bg: rgba(255, 255, 255, 0.9);
       --accent-purple: #9d8df1;
       --text-main: #4a3f6b;
       --text-muted: #7c73a3;
-      --glass-border: rgba(157, 141, 241, 0.2);
     }
 
     body {
       margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 2rem;
       background: var(--bg-color);
-      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', sans-serif;
       color: var(--text-main);
-      overflow: hidden; /* Keeps flowers contained */
+      overflow-x: hidden;
     }
 
-    /* Simple Animated Flowers */
+    /* Flowers floating in the background */
     .flower {
       position: fixed;
+      bottom: -50px;
       color: white;
-      font-size: 1.5rem;
+      font-size: 2rem;
       user-select: none;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.6;
-      animation: drift 15s linear infinite;
+      z-index: 1; /* Behind the card */
+      animation: drift 10s linear infinite;
     }
 
     @keyframes drift {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.6; }
-      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+      from { transform: translateY(0) rotate(0deg); opacity: 1; }
+      to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
     }
 
     .card {
-      max-width: 720px;
-      width: 100%;
-      padding: 2.25rem;
+      position: relative;
+      z-index: 10; /* Forces the card to the very front */
+      max-width: 650px;
+      width: 90%;
+      padding: 3rem 2rem;
       border-radius: 2rem;
       background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 50px rgba(157, 141, 241, 0.15);
-      border: 2px solid var(--glass-border);
-      position: relative;
+      box-shadow: 0 20px 40px rgba(157, 141, 241, 0.2);
+      border: 1px solid white;
     }
 
     h1 {
-      margin: 0 0 0.5rem;
-      font-size: clamp(2.25rem, 4vw, 3.5rem);
-      letter-spacing: -0.04em;
+      margin: 0 0 10px;
+      font-size: 2.5rem;
       color: var(--text-main);
-    }
-
-    p {
-      margin: 0 0 1.5rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      font-size: 1.05rem;
     }
 
     .timer {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
     }
 
     .segment {
-      background: white;
-      border: 1px solid var(--glass-border);
-      border-radius: 1.2rem;
-      padding: 1.2rem;
-      box-shadow: 0 4px 12px rgba(157, 141, 241, 0.05);
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 1rem;
+      border: 1px solid #eee;
     }
 
     .value {
-      font-size: 2.25rem;
-      font-weight: 700;
-      margin: 0;
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
       color: var(--accent-purple);
-      letter-spacing: -0.04em;
     }
 
     .label {
-      margin: 0.5rem 0 0;
-      color: var(--text-muted);
+      font-size: 0.75rem;
       text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text-muted);
     }
 
     .footer {
-      margin-top: 2rem;
+      margin-top: 30px;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      font-size: 0.95rem
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flower" style="left: 10%; animation-delay: 0s;">❀</div>
+  <div class="flower" style="left: 30%; animation-delay: 4s;">❀</div>
+  <div class="flower" style="left: 70%; animation-delay: 2s;">❀</div>
+  <div class="flower" style="left: 90%; animation-delay: 6s;">❀</div>
+
+  <main class="card">
+    <h1>Luke & Hayes</h1>
+    <p>Since October 17, 2025</p>
+
+    <div class="timer">
+      <div class="segment">
+        <span class="value" id="years">0</span>
+        <span class="label">Years</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="months">0</span>
+        <span class="label">Months</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="days">0</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="hours">00</span>
+        <span class="label">Hours</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="minutes">00</span>
+        <span class="label">Mins</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="seconds">00</span>
+        <span class="label">Secs</span>
+      </div>
+    </div>
+
+    <p class="footer">Forever & Always</p>
+  </main>
+
+  <script>
+    const startDate = new Date(2025, 9, 17
