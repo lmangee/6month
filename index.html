@@ -7,7 +7,7 @@
   <style>
     :root {
       --bg-color: #f3efff;
-      --card-bg: rgba(255, 255, 255, 0.9);
+      --card-bg: #ffffff;
       --accent-purple: #9d8df1;
       --text-main: #4a3f6b;
       --text-muted: #7c73a3;
@@ -19,93 +19,102 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       background: var(--bg-color);
-      font-family: 'Inter', sans-serif;
+      /* Font changed to Times New Roman */
+      font-family: "Times New Roman", Times, serif;
       color: var(--text-main);
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    /* Flowers floating in the background */
+    /* Floating flowers */
     .flower {
-      position: fixed;
-      bottom: -50px;
+      position: absolute;
+      bottom: -10%;
       color: white;
       font-size: 2rem;
       user-select: none;
-      z-index: 1; /* Behind the card */
-      animation: drift 10s linear infinite;
+      z-index: 1;
+      animation: drift 12s linear infinite;
     }
 
     @keyframes drift {
-      from { transform: translateY(0) rotate(0deg); opacity: 1; }
-      to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+      from { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
     }
 
     .card {
       position: relative;
-      z-index: 10; /* Forces the card to the very front */
-      max-width: 650px;
-      width: 90%;
-      padding: 3rem 2rem;
+      z-index: 10;
+      max-width: 600px;
+      width: 85%;
+      padding: 2.5rem;
       border-radius: 2rem;
       background: var(--card-bg);
-      box-shadow: 0 20px 40px rgba(157, 141, 241, 0.2);
-      border: 1px solid white;
+      box-shadow: 0 15px 35px rgba(157, 141, 241, 0.2);
+      border: 1px solid rgba(157, 141, 241, 0.1);
+      text-align: center;
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: 2.5rem;
-      color: var(--text-main);
+      margin: 0 0 0.5rem;
+      font-size: 3rem;
+      font-weight: normal;
+    }
+
+    .subtitle {
+      margin-bottom: 2rem;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      font-style: italic;
     }
 
     .timer {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
-      margin-top: 25px;
+    }
+
+    @media (max-width: 480px) {
+      .timer { grid-template-columns: repeat(2, 1fr); }
     }
 
     .segment {
-      background: #ffffff;
-      padding: 15px;
+      background: #faf9ff;
+      padding: 1rem;
       border-radius: 1rem;
-      border: 1px solid #eee;
+      border: 1px solid #f0edff;
     }
 
     .value {
       display: block;
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: bold;
       color: var(--accent-purple);
     }
 
     .label {
-      font-size: 0.75rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--text-muted);
     }
 
     .footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
+      margin-top: 2rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
-      font-style: italic;
     }
   </style>
 </head>
 <body>
 
-  <div class="flower" style="left: 10%; animation-delay: 0s;">❀</div>
-  <div class="flower" style="left: 30%; animation-delay: 4s;">❀</div>
-  <div class="flower" style="left: 70%; animation-delay: 2s;">❀</div>
-  <div class="flower" style="left: 90%; animation-delay: 6s;">❀</div>
+  <div class="flower" style="left: 15%; animation-delay: 0s;">❀</div>
+  <div class="flower" style="left: 45%; animation-delay: 3s;">❀</div>
+  <div class="flower" style="left: 75%; animation-delay: 6s;">❀</div>
 
   <main class="card">
     <h1>Luke & Hayes</h1>
-    <p>Since October 17, 2025</p>
+    <p class="subtitle">how long we've been together</p>
 
     <div class="timer">
       <div class="segment">
@@ -138,4 +147,5 @@
   </main>
 
   <script>
-    const startDate = new Date(2025, 9, 17
+    // Anniversary Date: October 17, 2025
+    const start = new Date(2025, 9, 17, 0, 0, 0
