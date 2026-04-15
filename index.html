@@ -85,4 +85,105 @@
       background: rgba(250, 249, 255, 0.6);
       padding: 0.8rem 0.2rem;
       border-radius: 1rem;
-      border: 1px solid rgba
+      border: 1px solid rgba(240, 237, 255, 0.5);
+    }
+
+    .value {
+      display: block;
+      font-size: 1.9rem; /* More compact numbers */
+      font-weight: bold;
+      color: var(--accent-purple);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flower" style="left: 10%; animation-delay: 0s;">❀</div>
+  <div class="flower" style="left: 30%; animation-delay: 4s;">❀</div>
+  <div class="flower" style="left: 55%; animation-delay: 2s;">❀</div>
+  <div class="flower" style="left: 75%; animation-delay: 8s;">❀</div>
+  <div class="flower" style="left: 90%; animation-delay: 5s;">❀</div>
+
+  <main class="card">
+    <h1>Luke & Hayes</h1>
+    <p class="subtitle">how long we've been together</p>
+
+    <div class="timer">
+      <div class="segment">
+        <span class="value" id="years">0</span>
+        <span class="label">Years</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="months">0</span>
+        <span class="label">Months</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="days">0</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="hours">00</span>
+        <span class="label">Hours</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="minutes">00</span>
+        <span class="label">Mins</span>
+      </div>
+      <div class="segment">
+        <span class="value" id="seconds">00</span>
+        <span class="label">Secs</span>
+      </div>
+    </div>
+
+    <p class="footer">Forever & Always</p>
+  </main>
+
+  <script>
+    function updateTimer() {
+      const startDate = new Date(2025, 9, 17, 0, 0, 0);
+      const now = new Date();
+
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
+
+      if (days < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById('years').innerHTML = years;
+      document.getElementById('months').innerHTML = months;
+      document.getElementById('days').innerHTML = days;
+      document.getElementById('hours').innerHTML = String(now.getHours()).padStart(2, '0');
+      document.getElementById('minutes').innerHTML = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('seconds').innerHTML = String(now.getSeconds()).padStart(2, '0');
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
