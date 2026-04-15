@@ -7,122 +7,133 @@
   <style>
     :root {
       --bg-color: #f3efff;
-      --card-bg: rgba(255, 255, 255, 0.85); /* Increased transparency */
+      --card-bg: rgba(255, 255, 255, 0.8);
       --accent-purple: #9d8df1;
       --text-main: #4a3f6b;
       --text-muted: #7c73a3;
     }
 
-    body {
+    body, html {
       margin: 0;
-      min-height: 100vh;
+      padding: 0;
+      height: 100%;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       background: var(--bg-color);
       font-family: "Times New Roman", Times, serif;
       color: var(--text-main);
-      overflow: hidden;
+      overflow: hidden; /* Ensures flowers stay within the window */
     }
 
     /* Floating flower decorations */
     .flower {
       position: absolute;
-      bottom: -10%;
+      bottom: -50px; /* Starts completely off-screen at the bottom */
       color: white;
-      font-size: 2rem;
+      font-size: 1.8rem;
       user-select: none;
       z-index: 1;
-      animation: drift 12s linear infinite;
-      text-shadow: 0 0 10px rgba(157, 141, 241, 0.3);
+      animation: drift 15s linear infinite;
+      text-shadow: 0 0 8px rgba(157, 141, 241, 0.2);
     }
 
     @keyframes drift {
-      from { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-      to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-115vh) rotate(360deg); /* Moves all the way past the top */
+        opacity: 0;
+      }
     }
 
     .card {
       position: relative;
       z-index: 10;
-      max-width: 500px; /* Narrower for more background space */
-      width: 80%;
-      padding: 2rem 1.5rem; /* More compact padding */
+      max-width: 440px; /* Even more compact width */
+      width: 85%;
+      padding: 1.5rem; /* Reduced padding */
       border-radius: 2rem;
       background: var(--card-bg);
-      backdrop-filter: blur(8px); /* Glass effect to see flowers behind */
-      box-shadow: 0 10px 30px rgba(157, 141, 241, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(157, 141, 241, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.6);
       text-align: center;
     }
 
     h1 {
-      margin: 0 0 0.2rem;
-      font-size: 2.5rem; /* Slightly smaller */
+      margin: 0;
+      font-size: 2.2rem;
       font-weight: normal;
     }
 
     .subtitle {
-      margin-bottom: 1.5rem; /* Tighter spacing */
+      margin: 0.2rem 0 1.2rem;
       color: var(--text-muted);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-style: italic;
     }
 
     .timer {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px; /* Tighter grid */
-    }
-
-    @media (max-width: 500px) {
-      .timer { grid-template-columns: repeat(3, 1fr); } /* Keep 3 columns on mobile too */
-      .value { font-size: 1.6rem !important; }
-      .label { font-size: 0.7rem !important; }
+      gap: 10px;
     }
 
     .segment {
-      background: rgba(250, 249, 255, 0.6);
-      padding: 0.8rem 0.2rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(240, 237, 255, 0.5);
+      background: rgba(255, 255, 255, 0.5);
+      padding: 0.6rem 0.2rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(240, 237, 255, 0.8);
     }
 
     .value {
       display: block;
-      font-size: 1.9rem; /* More compact numbers */
+      font-size: 1.7rem;
       font-weight: bold;
       color: var(--accent-purple);
       line-height: 1;
-      margin-bottom: 2px;
     }
 
     .label {
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--text-muted);
+      margin-top: 2px;
     }
 
     .footer {
-      margin-top: 1.5rem;
-      font-size: 1rem;
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      opacity: 0.8;
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
 
-  <div class="flower" style="left: 10%; animation-delay: 0s;">❀</div>
-  <div class="flower" style="left: 30%; animation-delay: 4s;">❀</div>
-  <div class="flower" style="left: 55%; animation-delay: 2s;">❀</div>
-  <div class="flower" style="left: 75%; animation-delay: 8s;">❀</div>
-  <div class="flower" style="left: 90%; animation-delay: 5s;">❀</div>
+  <div class="flower" style="left: 5%; animation-delay: 0s;">❀</div>
+  <div class="flower" style="left: 15%; animation-delay: 7s;">❀</div>
+  <div class="flower" style="left: 25%; animation-delay: 3s;">❀</div>
+  <div class="flower" style="left: 40%; animation-delay: 10s;">❀</div>
+  <div class="flower" style="left: 55%; animation-delay: 1s;">❀</div>
+  <div class="flower" style="left: 70%; animation-delay: 5s;">❀</div>
+  <div class="flower" style="left: 85%; animation-delay: 8s;">❀</div>
+  <div class="flower" style="left: 95%; animation-delay: 2s;">❀</div>
 
   <main class="card">
     <h1>Luke & Hayes</h1>
-    <p class="subtitle">How Long We've Been Together</p>
+    <p class="subtitle">how long we've been together</p>
 
     <div class="timer">
       <div class="segment">
@@ -151,7 +162,7 @@
       </div>
     </div>
 
-    <p class="footer">I Love You So Much; May We Never Stop Counting</p>
+    <p class="footer">Forever & Always</p>
   </main>
 
   <script>
