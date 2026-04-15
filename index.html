@@ -7,7 +7,7 @@
   <style>
     :root {
       --bg-color: #f3efff;
-      --card-bg: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.85); /* Increased transparency */
       --accent-purple: #9d8df1;
       --text-main: #4a3f6b;
       --text-muted: #7c73a3;
@@ -34,6 +34,7 @@
       user-select: none;
       z-index: 1;
       animation: drift 12s linear infinite;
+      text-shadow: 0 0 10px rgba(157, 141, 241, 0.3);
     }
 
     @keyframes drift {
@@ -44,149 +45,44 @@
     .card {
       position: relative;
       z-index: 10;
-      max-width: 600px;
-      width: 85%;
-      padding: 3rem 2rem;
-      border-radius: 2.5rem;
+      max-width: 500px; /* Narrower for more background space */
+      width: 80%;
+      padding: 2rem 1.5rem; /* More compact padding */
+      border-radius: 2rem;
       background: var(--card-bg);
-      box-shadow: 0 15px 40px rgba(157, 141, 241, 0.2);
-      border: 1px solid rgba(157, 141, 241, 0.1);
+      backdrop-filter: blur(8px); /* Glass effect to see flowers behind */
+      box-shadow: 0 10px 30px rgba(157, 141, 241, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       text-align: center;
     }
 
     h1 {
-      margin: 0 0 0.5rem;
-      font-size: 3.2rem;
+      margin: 0 0 0.2rem;
+      font-size: 2.5rem; /* Slightly smaller */
       font-weight: normal;
     }
 
     .subtitle {
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem; /* Tighter spacing */
       color: var(--text-muted);
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-style: italic;
     }
 
     .timer {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 12px; /* Tighter grid */
     }
 
     @media (max-width: 500px) {
-      .timer { grid-template-columns: repeat(2, 1fr); }
+      .timer { grid-template-columns: repeat(3, 1fr); } /* Keep 3 columns on mobile too */
+      .value { font-size: 1.6rem !important; }
+      .label { font-size: 0.7rem !important; }
     }
 
     .segment {
-      background: #faf9ff;
-      padding: 1.2rem 0.5rem;
-      border-radius: 1.2rem;
-      border: 1px solid #f0edff;
-    }
-
-    .value {
-      display: block;
-      font-size: 2.4rem;
-      font-weight: bold;
-      color: var(--accent-purple);
-      line-height: 1;
-      margin-bottom: 5px;
-    }
-
-    .label {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-    }
-
-    .footer {
-      margin-top: 2.5rem;
-      font-size: 1.2rem;
-      color: var(--text-muted);
-    }
-  </style>
-</head>
-<body>
-
-  <div class="flower" style="left: 10%; animation-delay: 0s;">❀</div>
-  <div class="flower" style="left: 40%; animation-delay: 4s;">❀</div>
-  <div class="flower" style="left: 70%; animation-delay: 2s;">❀</div>
-  <div class="flower" style="left: 90%; animation-delay: 7s;">❀</div>
-
-  <main class="card">
-    <h1>Luke & Hayes</h1>
-    <p class="subtitle">How Long We've Been Together:</p>
-
-    <div class="timer">
-      <div class="segment">
-        <span class="value" id="years">0</span>
-        <span class="label">Years</span>
-      </div>
-      <div class="segment">
-        <span class="value" id="months">0</span>
-        <span class="label">Months</span>
-      </div>
-      <div class="segment">
-        <span class="value" id="days">0</span>
-        <span class="label">Days</span>
-      </div>
-      <div class="segment">
-        <span class="value" id="hours">00</span>
-        <span class="label">Hours</span>
-      </div>
-      <div class="segment">
-        <span class="value" id="minutes">00</span>
-        <span class="label">Mins</span>
-      </div>
-      <div class="segment">
-        <span class="value" id="seconds">00</span>
-        <span class="label">Secs</span>
-      </div>
-    </div>
-
-    <p class="footer">I Love You Forever And Always, And May We Never Stop Counting</p>
-  </main>
-
-  <script>
-    function updateTimer() {
-      // The exact day you started: Oct 17, 2025
-      const startDate = new Date(2025, 9, 17, 0, 0, 0);
-      const now = new Date();
-
-      let years = now.getFullYear() - startDate.getFullYear();
-      let months = now.getMonth() - startDate.getMonth();
-      let days = now.getDate() - startDate.getDate();
-
-      // Adjust for day roll-over
-      if (days < 0) {
-        months--;
-        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += prevMonth.getDate();
-      }
-
-      // Adjust for month roll-over
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-
-      // Display the date values
-      document.getElementById('years').innerHTML = years;
-      document.getElementById('months').innerHTML = months;
-      document.getElementById('days').innerHTML = days;
-
-      // Display the time values
-      document.getElementById('hours').innerHTML = String(now.getHours()).padStart(2, '0');
-      document.getElementById('minutes').innerHTML = String(now.getMinutes()).padStart(2, '0');
-      document.getElementById('seconds').innerHTML = String(now.getSeconds()).padStart(2, '0');
-    }
-
-    // Run the function immediately
-    updateTimer();
-
-    // Set it to run every second
-    setInterval(updateTimer, 1000);
-  </script>
-</body>
-</html>
+      background: rgba(250, 249, 255, 0.6);
+      padding: 0.8rem 0.2rem;
+      border-radius: 1rem;
+      border: 1px solid rgba
